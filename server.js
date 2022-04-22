@@ -36,6 +36,7 @@ app.post('/api/User/AddUser',UserController.AddUser)
 app.get('/api/User/RetrieveUser',UserController.RetrieveUser)
 app.delete('/api/User/DeleteUser',UserController.DeleteUser)
 app.post('/api/User/UpdateUser',UserController.UpdateUser)
+app.post('/api/User/Getlogindetailsbyusername',UserController.Getlogindetailsbyusername)
 
 
 

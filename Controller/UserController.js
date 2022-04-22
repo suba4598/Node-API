@@ -3,7 +3,7 @@ const RegModel = require('../Models/User')
 module.exports = {
 
     AddUser:(req,res)=>{
-let User= new RegModel({
+    let User= new RegModel({
     Email: req.body.Email,
     MobileNo: req.body.MobileNo,
     username: req.body.username,
@@ -28,7 +28,12 @@ RegModel.find()
 })
 
 },
+
+
+
+
 DeleteUser: (req, res) => {
+   
     RegModel.findByIdAndRemove({ _id: req.body._id})
     .then(User => {
         if(!User) {
@@ -48,8 +53,29 @@ UpdateUser: (req, res) => {
       .catch(err => {
           res.json({ success: false, result: err})
       })
-}
+},
 
-}
+
+// Username
+Getlogindetailsbyusername: (req, res) => {
+
+RegModel.findOne({
+    username: req.body.username, password:req.body.password
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    if (user) {
+      res.status(200).send({ message: "userfound" });
+      return;
+    }
+    else{
+        res.status(200).send({ message: "Failed! Username is already in use!" });
+        return;
+    }
+})
+  
+}}
 
 
